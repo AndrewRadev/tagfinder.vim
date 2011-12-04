@@ -22,7 +22,7 @@ The command is (provided you're in ~/.vim):
 >
     git submodule add git://github.com/AndrewRadev/tagfinder.vim.git bundle/tagfinder
 <
-Another way is to simply copy all the essential directories inside the ~.vim/
+Another way is to simply copy all the essential directories inside the ~/.vim
 directory: autoload, doc, plugin.
 
 After the plugin is installed, you can use |:DefineTagFinder| to define global
