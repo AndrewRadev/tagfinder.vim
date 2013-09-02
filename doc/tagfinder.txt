@@ -1,3 +1,5 @@
+*tagfinder.txt*	Search for tags by their kind
+
 ==============================================================================
 CONTENTS                                      *tagfinder* *tagfinder-contents*
 
