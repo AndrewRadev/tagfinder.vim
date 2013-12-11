@@ -6,26 +6,29 @@ let g:loaded_tagfinder = '0.0.1' " version number
 let s:keepcpo          = &cpo
 set cpo&vim
 
-if !exists('b:tagfinder_commands')
+if !exists('g:tagfinder_commands')
   let g:tagfinder_commands = {}
 endif
 
 command! -nargs=+ DefineLocalTagFinder call s:DefineTagFinder(<f-args>)
-function s:DefineLocalTagFinder(name, kinds)
+function s:DefineLocalTagFinder(name, ...)
+  let kinds = join(a:000, ',')
+
   if !exists('b:tagfinder_commands')
     let b:tagfinder_commands = {}
   endif
 
-  let b:tagfinder_commands[a:name] = split(a:kinds, ',')
+  let b:tagfinder_commands[a:name] = split(kinds, ',')
 
-  exe 'command! -buffer -nargs=1 -complete=customlist,tagfinder#CompleteTagFinder '.a:name.' call tagfinder#JumpToTag(<f-args>, "'.a:kinds.'")'
+  exe 'command! -buffer -nargs=1 -complete=customlist,tagfinder#CompleteTagFinder '.a:name.' call tagfinder#JumpToTag(<f-args>, "'.kinds.'")'
 endfunction
 
 command! -nargs=+ DefineTagFinder call s:DefineTagFinder(<f-args>)
-function s:DefineTagFinder(name, kinds)
-  let g:tagfinder_commands[a:name] = split(a:kinds, ',')
+function s:DefineTagFinder(name, ...)
+  let kinds = join(a:000, ',')
+  let g:tagfinder_commands[a:name] = split(kinds, ',')
 
-  exe 'command! -nargs=1 -complete=customlist,tagfinder#CompleteTagFinder '.a:name.' call tagfinder#JumpToTag(<f-args>, "'.a:kinds.'")'
+  exe 'command! -nargs=1 -complete=customlist,tagfinder#CompleteTagFinder '.a:name.' call tagfinder#JumpToTag(<f-args>, "'.kinds.'")'
 endfunction
 
 let &cpo = s:keepcpo

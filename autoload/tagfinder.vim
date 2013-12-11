@@ -20,9 +20,11 @@ function! tagfinder#FindTagNamesByPrefix(prefix, kinds)
   let tag_set = {}
 
   for entry in taglist('^'.a:prefix)
-    if index(a:kinds, entry.kind) > -1
-      let tag_set[entry.name] = 1
+    if !empty(a:kinds) && index(a:kinds, entry.kind) < 0
+      continue
     endif
+
+    let tag_set[entry.name] = 1
   endfor
 
   return keys(tag_set)
@@ -32,9 +34,11 @@ function! tagfinder#FindTags(name, kinds)
   let tag_list = []
 
   for entry in taglist('^'.a:name.'$')
-    if index(a:kinds, entry.kind) > -1
-      call add(tag_list, entry)
+    if !empty(a:kinds) && index(a:kinds, entry.kind) < 0
+      continue
     endif
+
+    call add(tag_list, entry)
   endfor
 
   return tag_list
