@@ -71,7 +71,7 @@ overview of the matching classes (or functions, modules, vim commands...).
 You can also define a command without providing filters for particular tag
 kinds:
 >
-    :DefineTagFinder Tag
+    DefineTagFinder Tag
 <
 The new `:Tag` command would now act like the built-in |:tag| command, except
 it would use the quickfix window for results.

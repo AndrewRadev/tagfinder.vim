@@ -36,7 +36,7 @@ You can also define a command without providing filters for particular tag
 kinds:
 
 ``` vim
-:DefineTagFinder Tag
+DefineTagFinder Tag
 ```
 
 This new `:Tag` command would now act like the built-in `:tag` command, except
