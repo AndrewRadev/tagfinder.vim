@@ -60,12 +60,10 @@ function! tagfinder#JumpToTag(name, kinds)
 
   if len(qflist) == 0
     echohl Error | echo "No tags found" | echohl NONE
-  elseif len(qflist) == 1
-    call setqflist(qflist)
-    silent cfirst
   else
     call setqflist(qflist)
-    copen
+    silent cfirst
+    echo 'tag 1 of '.len(qflist).'. Execute :copen to see the rest'
   endif
 endfunction
 
